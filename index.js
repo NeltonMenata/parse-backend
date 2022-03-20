@@ -64,3 +64,6 @@ module.exports = {
   app,
   config,
 };
+
+// Mongo DB User = necame; Password = 9wo76x0VigJe9dAY
+// Mongo DB Uri = mongodb+srv://necame:<password>@cluster0.mbakb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
