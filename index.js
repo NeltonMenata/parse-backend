@@ -3,6 +3,7 @@
 
 const express = require('express');
 const ParseServer = require('parse-server').ParseServer;
+const ParseDashboard = require('parse-dashboard');
 const path = require('path');
 const args = process.argv || [];
 const test = args.some(arg => arg.includes('jasmine'));
@@ -28,8 +29,24 @@ const config = {
 
 const app = express();
 
+// Configura o dashboard da nossa app parse
+const dashboard = new ParseDashboard({
+  "apps": [
+    {
+      "serverURL": process.env.SERVER_URL,
+      "appId": process.env.APP_ID,
+      "masterKey": process.env.MASTER_KEY,
+      "appName": "MyFirstParse"
+    }
+  ],
+  "trustProxy": 1
+});
+
 // Serve static assets from the /public folder
 app.use('/public', express.static(path.join(__dirname, '/public')));
+
+// Disponibilizando o dashboard no app
+app.use('/dashboard', dashboard);
 
 // Serve the Parse API on the /parse URL prefix
 const mountPath = process.env.PARSE_MOUNT || '/parse';
@@ -66,4 +83,4 @@ module.exports = {
 };
 
 // Mongo DB User = necame; Password = 9wo76x0VigJe9dAY
-// Mongo DB Uri = mongodb+srv://necame:<password>@cluster0.mbakb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+// Mongo DB Uri = mongodb+srv://necame:9wo76x0VigJe9dAY@cluster0.mbakb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
