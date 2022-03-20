@@ -39,6 +39,12 @@ const dashboard = new ParseDashboard({
       "appName": "MyFirstParse"
     }
   ],
+  "users" : [
+    {
+      "user" : process.env.DASHBOARD_USERNAME,
+      "pass" : process.env.DASHBOARD_PASSWORD
+    }
+  ],
   "trustProxy": 1
 });
 
