@@ -36,7 +36,7 @@ const dashboard = new ParseDashboard({
       "serverURL": process.env.SERVER_URL,
       "appId": process.env.APP_ID,
       "masterKey": process.env.MASTER_KEY,
-      "appName": "MyFirstParse"
+      "appName": process.env.DASHBOARD_APPNAME || "MyFirstParse"
     }
   ],
   "users" : [
