@@ -1,3 +1,5 @@
+const Post = Parse.Object.extend("Post")
+
 Parse.Cloud.define('hello', req => {
   req.log.info(req);
   return 'Hello Parse Server';
@@ -13,7 +15,21 @@ Parse.Cloud.beforeSave('Test', async (req) => {
   throw new Parse.Error(9001, 'Saving test objects is not available.');
 });
 
-Parse.Cloud.define("mundo",(req)=>{
-  return {"result":"Resultado da Função"};
+Parse.Cloud.define("mundo", (req) => {
+  return { "result": "Resultado da Função" };
+
+});
+
+Parse.Cloud.define("addPost", async (req) => {
+  const post = new Post();
+  const postContent = req.params.content;
+  post.set("post", postContent);
+  try {
+    await post.save(null, { useMasterKey: true });
+    return post;
+  } catch (error) {
+    new Error(error);
+  }
+
 
 });
