@@ -23,7 +23,11 @@ Parse.Cloud.define("mundo", (req) => {
 Parse.Cloud.define("addPost", async (req) => {
   const post = new Post();
   const postContent = req.params.content;
+  const postFile = req.params.file;
+
   post.set("post", postContent);
+  post.set("photo", postFile);
+
   try {
     await post.save(null, { useMasterKey: true });
     return post;
