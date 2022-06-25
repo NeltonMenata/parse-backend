@@ -57,10 +57,13 @@ app.use('/dashboard', dashboard);
 
 // Serve the Parse API on the /parse URL prefix
 const mountPath = process.env.PARSE_MOUNT || '/parse';
-if (!test) {
+
+// ## TESTE
+//if (!test) {
   const api = new ParseServer(config);
   app.use(mountPath, api);
-}
+//}
+// ## FIM TESTE
 
 // Parse Server plays nicely with the rest of your web routes
 app.get('/', function (req, res) {
