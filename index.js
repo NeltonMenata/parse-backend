@@ -77,7 +77,7 @@ app.get('/test', function (req, res) {
   res.sendFile(path.join(__dirname, '/public/test.html'));
 });
 
-const port = process.env.PORT || 1337;
+const port = process.env.PORT || 3000;
 if (!test) {
   const httpServer = require('http').createServer(app);
   httpServer.listen(port, function () {
