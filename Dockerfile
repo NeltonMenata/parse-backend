@@ -2,8 +2,9 @@ FROM node:latest
 
 RUN mkdir parse
 
-ADD . /parse
+
 WORKDIR /parse
+COPY . /parse
 RUN npm install
 
 ENV APP_ID setYourAppId
